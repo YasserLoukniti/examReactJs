@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {}
 }));
 
-function Header({ className, usersCount, ...rest }) {
+function Header({ className, seriesCount, ...rest }) {
   const classes = useStyles();
 
   return (
@@ -23,9 +23,9 @@ function Header({ className, usersCount, ...rest }) {
       <Typography
         variant="h3"
       >
-        Users List (
+        Series List (
         {' '}
-        {usersCount}
+        {seriesCount}
         {' '}
         )
       </Typography>

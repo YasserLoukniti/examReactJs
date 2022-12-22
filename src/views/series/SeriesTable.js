@@ -3,17 +3,12 @@ import {
   makeStyles,
   Card,
   Box,
-  TableBody,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  Button,
-  TablePagination
+  TablePagination,
+  Grid
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import UserModal from 'src/components/UserModal';
+import SerieCard from './SerieCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {}
@@ -35,7 +30,7 @@ function SeriesTable({ className, series, testButtonClicked, ...rest }) {
   });
 
   const [page, setPage] = useState(0); // page
-  const [rowPerPage, setRowPerPage] = useState(5); // limit
+  const [rowPerPage, setRowPerPage] = useState(12); // limit
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -66,55 +61,20 @@ function SeriesTable({ className, series, testButtonClicked, ...rest }) {
       {...rest}
     >
       <Box>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                Name
-              </TableCell>
-              <TableCell>
-                type
-              </TableCell>
-              <TableCell>
-                language
-              </TableCell>
-              <TableCell>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
+      <Grid container className={classes.root} spacing={2}>
             {
               seriesToDisplay && seriesToDisplay.map((serie) => {
                 return (
-                  <TableRow
-                    key={serie.id}
-                  >
-                    <TableCell>
-                      {serie.name}
-                    </TableCell>
-                    <TableCell>
-                      {serie.type}
-                    </TableCell>
-                    <TableCell>
-                      {serie.language}
-                    </TableCell>
-                    <TableCell>
-                      {/* <Button
-                        color="secondary"
-                        fullWidth
-                        size="large"
-                        variant="contained"
-                        onClick={() => handleSerieInfo(serie)}
-                      >
-                        Info +
-                      </Button> */}
-                    </TableCell>
-                  </TableRow>
+                  <Grid item xs={3}>
+                  <div key={serie.id}>
+                  <SerieCard name={serie.name} type={serie.type} language={serie.language} image={serie.image.medium}/>
+                  </div>
+                  </Grid>
+
                 );
               })
             }
-          </TableBody>
-        </Table>
+      </Grid>
       </Box>
 
       <TablePagination
@@ -124,7 +84,7 @@ function SeriesTable({ className, series, testButtonClicked, ...rest }) {
         rowsPerPage={rowPerPage}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPage}
-        rowsPerPageOptions={[2, 5, 10]}
+        rowsPerPageOptions={[10, 20, 50]}
       />
       {/* <UserModal
         open={open}
