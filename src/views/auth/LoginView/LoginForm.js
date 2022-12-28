@@ -25,7 +25,7 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
     <Formik
       initialValues={{
         email: 'test@test.com',
-        password: '123456'
+        password: '********'
       }}
       validationSchema={Yup.object().shape({
         email: Yup.string().email('Must be a valid email')
@@ -95,7 +95,7 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
           />
           <Box mt={2}>
             <Button
-              color="secondary"
+              color="primary"
               disabled={isSubmitting}
               fullWidth
               size="large"

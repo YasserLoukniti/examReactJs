@@ -100,6 +100,7 @@ function UsersTable({ className, users, testButtonClicked, ...rest }) {
                         fullWidth
                         size="large"
                         variant="contained"
+                        avatar=""
                         onClick={() => handleUserProfile(user)}
                       >
                         Profile

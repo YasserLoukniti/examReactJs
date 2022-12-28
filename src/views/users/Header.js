@@ -21,8 +21,20 @@ function Header({ className, usersCount, ...rest }) {
       spacing={3}
     >
       <Typography
-        variant="h3"
-      >
+            variant="h6"
+            noWrap
+            component="a"
+            sx={{
+              mr: 5,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 900,
+              letterSpacing: '.5rem',
+              color: '#f44336',
+              textDecoration: 'none',
+  
+            }}
+          >
         Users List (
         {' '}
         {usersCount}

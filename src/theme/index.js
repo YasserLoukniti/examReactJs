@@ -36,7 +36,7 @@ const themeConfigs = [
         input: {
           '&::placeholder': {
             opacity: 1,
-            color: colors.blueGrey[600]
+            color: colors.blueGrey[500]
           }
         }
       }
@@ -44,22 +44,22 @@ const themeConfigs = [
     palette: {
       type: 'light',
       action: {
-        active: colors.blueGrey[600]
+        active: colors.blueGrey[500]
       },
       background: {
         default: colors.common.white,
-        dark: '#f4f6f8',
+        dark: '#f8f4f4',
         paper: colors.common.white
       },
       primary: {
-        main: colors.indigo[600]
+        main: '#9370db '
       },
       secondary: {
-        main: '#5850EC'
+        main: '#663399'
       },
       text: {
-        primary: colors.blueGrey[900],
-        secondary: colors.blueGrey[600]
+        primary: colors.grey[900],
+        secondary: colors.deepPurple[900]
       }
     },
     shadows: softShadows
@@ -77,15 +77,15 @@ const themeConfigs = [
         focus: 'rgba(255, 255, 255, 0.12)'
       },
       background: {
-        default: '#282C34',
-        dark: '#1c2025',
+        default: '#9370db ',
+        dark: '#d5d5d5',
         paper: '#282C34'
       },
       primary: {
-        main: '#8a85ff'
+        main: '#9370db'
       },
       secondary: {
-        main: '#8a85ff'
+        main: '#663399'
       },
       text: {
         primary: '#e6e5e8',
