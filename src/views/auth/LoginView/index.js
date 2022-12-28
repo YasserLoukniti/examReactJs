@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100%',
     flexDirection: 'column',
     paddingBottom: 80,
-    paddingTop: 80
+    paddingTop: 80,
+    backgroundImage: "url('https://wallpapertag.com/wallpaper/full/2/1/2/156687-most-popular-white-gradient-background-1920x1200-photo.jpg')",
+
   },
   card: {
     overflow: 'visible',
@@ -32,14 +34,14 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       flexGrow: 1,
       flexBasis: '50%',
-      width: '50%'
+      width: '50%',
     }
   },
   content: {
     padding: theme.spacing(8, 4, 3, 4)
   },
   icon: {
-    backgroundColor: colors.green[500],
+    backgroundColor: colors.deepPurple[300],
     color: theme.palette.common.white,
     borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(1),
@@ -76,15 +78,17 @@ function LoginView() {
             <Avatar className={classes.icon}>
               <LockIcon fontSize="large" />
             </Avatar>
+
+            <center>
             <Typography
               variant="h2"
               color="textPrimary"
             >
               Sign in
-            </Typography>
+            </Typography></center>
             <Typography
               variant="subtitle1"
-              color="textSecondary"
+              color="textPrimary"
             >
               {loginDes}
             </Typography>
@@ -93,7 +97,7 @@ function LoginView() {
             </Box>
             <Box mt={2}>
               <Button
-                color="secondary"
+                color="primary"
                 fullWidth
                 size="large"
                 variant="contained"
