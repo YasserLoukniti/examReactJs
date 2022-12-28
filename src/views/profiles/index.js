@@ -8,7 +8,8 @@ import React, {
 import {
   Container,
   makeStyles,
-  Box
+  Box,
+  Button
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import profilesService from 'src/services/profilesService';
@@ -17,6 +18,7 @@ import useAxios from 'src/hooks/useAxios';
 import UserContext from 'src/context/UserContext';
 import Header from './Header';
 import ProfilesTable from './ProfilesTable';
+import CreateProfileModal from 'src/components/CreateProfileModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,11 +39,6 @@ function ProfilesListView() {
 
   const [profilesCount, setProfilesCount] = useState(0);
   const [profiles, setProfiles] = useState([]);
-  const [test, setTest] = useState('');
-
-  const getData = useMemo(() => {
-    doSomethingBig(test);
-  }, [test]);
 
   const getProfiles = useCallback(() => {
     profilesService.listProfiles()
@@ -59,8 +56,9 @@ function ProfilesListView() {
 
     getProfiles();
   }, [getProfiles, data]);
+  const [openModal, setOpenModal] = useState(false);
 
-  const testButtonClicked = () => {};
+  const testButtonClicked = () => { };
 
   return (
     <Page
@@ -71,10 +69,25 @@ function ProfilesListView() {
         <Header profilesCount={profilesCount} />
 
         <Box mt={3}>
+          <Button
+            color="secondary"
+            size="large"
+            variant="contained"
+            style={{ margin: 2 }}
+            onClick={() => setOpenModal(true)}
+          >
+            Create Profile
+          </Button>
+          
           <ProfilesTable profiles={profiles} testButtonClicked={testButtonClicked} />
         </Box>
       </Container>
+      <CreateProfileModal
+        open={openModal}
+        handleClose={() =>  setOpenModal(false)}
+      />
     </Page>
+    
   );
 }
 
