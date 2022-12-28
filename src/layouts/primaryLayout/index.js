@@ -17,10 +17,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flex: '1 1 auto',
     overflow: 'hidden',
+    marginTop: 300,
     paddingTop: 64,
-    [theme.breakpoints.up('lg')]: {
-      paddingLeft: 256
-    }
+   
   },
   contentContainer: {
     display: 'flex',
@@ -46,14 +45,8 @@ function PrimaryLayout({ children }) {
       {/* TopBAR */}
       <Header onMobileNavOpen={() => setIsMobileNavOpen(true)} />
 
-      {/* NavBar
-      <NavBar
-        onMobileNavClose={() => setIsMobileNavOpen(false)}
-        openMobile={isMobileNavOpen}
-      /> */}
-
       {/* Children */}
-      <div className={classes.wrapper}>
+      <div className={classes.wrapper} >
         <div className={classes.contentContainer}>
           <div className={classes.content}>
             {children}

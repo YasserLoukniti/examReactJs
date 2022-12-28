@@ -47,8 +47,8 @@ function ProfilesListView() {
     profilesService.listProfiles()
       .then((res) => {
         if (isMountedRef.current) {
-          setProfiles(res);
-          setProfilesCount(res.length);
+          setProfiles(res.data.users);
+          setProfilesCount(res.data.users.length);
         }
       });
   }, []);
@@ -71,7 +71,7 @@ function ProfilesListView() {
         <Header profilesCount={profilesCount} />
 
         <Box mt={3}>
-          <ProfilesTable profiles={data} testButtonClicked={testButtonClicked} />
+          <ProfilesTable profiles={profiles} testButtonClicked={testButtonClicked} />
         </Box>
       </Container>
     </Page>

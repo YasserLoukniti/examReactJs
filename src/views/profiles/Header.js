@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {}
 }));
 
-function Header({ className, usersCount, ...rest }) {
+function Header({ className, ...rest }) {
   const classes = useStyles();
 
   return (
@@ -23,11 +23,7 @@ function Header({ className, usersCount, ...rest }) {
       <Typography
         variant="h3"
       >
-        Users List (
-        {' '}
-        {usersCount}
-        {' '}
-        )
+        Profils
       </Typography>
     </Grid>
   );
@@ -35,7 +31,7 @@ function Header({ className, usersCount, ...rest }) {
 
 Header.prototype = {
   className: PropTypes.string,
-  usersCount: PropTypes.number,
+  
 };
 
 export default Header;

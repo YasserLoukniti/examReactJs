@@ -14,6 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import UserModal from 'src/components/UserModal';
+import UserUpdateModal from 'src/components/UserUpdateModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {}
@@ -28,7 +29,9 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const [userProfile, setUserProfile] = useState({
+    id: '',
     name: '',
     username: '',
     phone: '',
@@ -36,7 +39,7 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
   });
 
   const [page, setPage] = useState(0); // page
-  const [rowPerPage, setRowPerPage] = useState(2); // limit
+  const [rowPerPage, setRowPerPage] = useState(5); // limit
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -48,6 +51,7 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
 
   const handleUserProfile = (profile) => {
     setUserProfile({
+      id: profile.id,
       name: profile.name,
       username: profile.username,
       phone: profile.phone,
@@ -55,9 +59,21 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
     });
     setOpen(true);
   };
+  const handleUpdateProfile = (profile) => {
+    setUserProfile({
+      id: profile.id,
+      name: profile.name,
+      mail: profile.email,
+      username: profile.username,
+      phone: profile.phone,
+      companyName: profile.company.name
+    });
+    setOpenUpdate(true);
+  };
 
   const handleClose = () => {
     setOpen(false);
+    setOpenUpdate(false);
   };
 
   const profilesToDisplay = applyPagination(profiles, page, rowPerPage);
@@ -96,14 +112,37 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
                     </TableCell>
                     <TableCell>
                       <Button
-                        color="secondary"
-                        fullWidth
+                        color="default"
                         size="large"
                         variant="contained"
+                        style={{margin:2}}
                         onClick={() => handleUserProfile(profile)}
                       >
                         Profile
                       </Button>
+
+                      <Button
+                        color="primary"
+                        size="large"
+                        variant="contained"
+                        style={{margin:2}}
+                        onClick={() => handleUpdateProfile(profile)}
+                      >
+                        Update
+                      </Button>
+
+
+                      <Button
+                        color="secondary"
+                        size="large"
+                        variant="contained"
+                        style={{margin:2}}
+                        onClick={() => handleUserProfile(profile)}
+                      >
+                        Delete
+                      </Button>
+
+
                     </TableCell>
                   </TableRow>
                 );
@@ -120,10 +159,15 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
         rowsPerPage={rowPerPage}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPage}
-        rowsPerPageOptions={[2, 5, 10]}
+        rowsPerPageOptions={[5, 10, 15]}
       />
       <UserModal
         open={open}
+        handleClose={handleClose}
+        userProfile={userProfile}
+      />
+      <UserUpdateModal
+        open={openUpdate}
         handleClose={handleClose}
         userProfile={userProfile}
       />

@@ -5,8 +5,10 @@ class ProfilesService {
   listProfiles = () => new Promise((resolve, reject) => {
     axios({
       method: 'GET',
-      url: `${API_BASE_URL}/users`,
-      // headers: {}
+      url: `${API_BASE_URL}/v1/users?page=30`,
+      headers: {
+        'x-access-token': localStorage.getItem('accessToken')
+      }
     })
       .then((res) => {
         resolve(res.data);
