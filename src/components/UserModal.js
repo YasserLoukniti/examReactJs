@@ -24,14 +24,13 @@ function UserModal({
       aria-describedby="alert-dialog-description"
       {...rest}
     >
-      <DialogTitle id="alert-dialog-title">{userProfile.name}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">id : {userProfile.id}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {userProfile.username}
+          {userProfile.firstname} {userProfile.lastname}
           <br />
-          {userProfile.phone}
-          <br />
-          {userProfile.companyName}
+          {userProfile.email}
+
         </DialogContentText>
       </DialogContent>
       <DialogActions>

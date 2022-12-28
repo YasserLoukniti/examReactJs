@@ -24,10 +24,10 @@ class ProfilesService {
       headers: {
         'x-access-token': localStorage.getItem('accessToken')
       },
-      body:{
-        usernname:profile.username,
-        email:profile.email,
-        phone:profile.phone
+      data:{
+        'firstName':profile.firstName,
+        'email':profile.email,
+        'lastName':profile.lastName
       }
     })
       .then((res) => {
@@ -59,11 +59,11 @@ class ProfilesService {
       headers: {
         'x-access-token': localStorage.getItem('accessToken')
       },
-      body:{
-        firstName: profile.firstName,
-        lastName: profile.lastName,
-        email: profile.email,
-        password: profile.password
+      data:{
+        'firstName': profile.firstName,
+        'lastName': profile.lastName,
+        'email': profile.email,
+        'password': profile.password
       }
     })
       .then((res) => {

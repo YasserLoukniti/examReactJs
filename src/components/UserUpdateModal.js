@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   DialogActions,
   Button,
   FormControl,
@@ -12,6 +11,8 @@ import {
   Input,
   FormHelperText
 } from '@material-ui/core';
+import { useRef } from 'react';
+import profilesService from 'src/services/profilesService';
 
 function UserUpdateModal({
   open,
@@ -19,7 +20,15 @@ function UserUpdateModal({
   userProfile,
   className,
   ...rest
-}) {
+}){
+const updateForm = useRef(null);
+const [msg, setMsg] = useState('');
+
+const handleSubmit = async () => {
+  let res = await profilesService.updateProfile({id:userProfile.id,firstName : updateForm.current[0].value , lastName:updateForm.current[1].value ,email:updateForm.current[2].value })
+  console.log(userProfile.id,res);
+  setMsg(res.data)
+};
   return (
     <Dialog
       open={open}
@@ -30,28 +39,29 @@ function UserUpdateModal({
     >
       <DialogTitle id="alert-dialog-title">{userProfile.name}</DialogTitle>
       <DialogContent>
-        <form action="">
+        <form ref={updateForm}>
           <FormControl>
-            <InputLabel htmlFor="username">{userProfile.username}</InputLabel>
-            <Input id="username" aria-describedby="my-helper-text" value={userProfile.username}/>
-            <FormHelperText id="my-helper-text">Username</FormHelperText>
+            <InputLabel htmlFor="firstname">{userProfile.firstname}</InputLabel>
+            <Input id="firstname" aria-describedby="my-helper-text" ref={updateForm.firstname}/>
+            <FormHelperText id="my-helper-text">Firstname</FormHelperText>
 
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="email">{userProfile.mail}</InputLabel>
-            <Input id="email" aria-describedby="my-helper-text" value={userProfile.mail}/>
+            <InputLabel htmlFor="lastname">{userProfile.lastname}</InputLabel>
+            <Input id="lastname" aria-describedby="my-helper-text" />
+            <FormHelperText id="my-helper-text">lastname</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="email">{userProfile.email}</InputLabel>
+            <Input id="email" aria-describedby="my-helper-text" />
             <FormHelperText id="my-helper-text">Email</FormHelperText>
           </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="phone">{userProfile.phone}</InputLabel>
-            <Input id="phone" aria-describedby="my-helper-text" value={userProfile.phone} />
-            <FormHelperText id="my-helper-text">Phone</FormHelperText>
-          </FormControl>
-
+          
         </form>
       </DialogContent> 
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <p>{msg}</p>
+        <Button onClick={handleSubmit} color="primary">
           Update
         </Button>
         <Button onClick={handleClose} color="primary">

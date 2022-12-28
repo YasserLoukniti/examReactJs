@@ -32,10 +32,9 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
   const [openUpdate, setOpenUpdate] = useState(false);
   const [userProfile, setUserProfile] = useState({
     id: '',
-    name: '',
-    username: '',
-    phone: '',
-    companyName: ''
+    firstanme: '',
+    lastname: '',
+    email: '',
   });
 
   const [page, setPage] = useState(0); // page
@@ -52,21 +51,18 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
   const handleUserProfile = (profile) => {
     setUserProfile({
       id: profile.id,
-      name: profile.name,
-      username: profile.username,
-      phone: profile.phone,
-      companyName: profile.company.name
+      firstname: profile.firstName,
+      lastname: profile.lastName,
+      email: profile.email,
     });
     setOpen(true);
   };
   const handleUpdateProfile = (profile) => {
     setUserProfile({
       id: profile.id,
-      name: profile.name,
-      mail: profile.email,
-      username: profile.username,
-      phone: profile.phone,
-      companyName: profile.company.name
+      firstname: profile.firstName,
+      lastname: profile.lastName,
+      email: profile.email,
     });
     setOpenUpdate(true);
   };
@@ -105,7 +101,7 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
                     key={profile.id}
                   >
                     <TableCell>
-                      {profile.name}
+                      {profile.firstName} {profile.lastName}
                     </TableCell>
                     <TableCell>
                       {profile.email}
