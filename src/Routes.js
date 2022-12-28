@@ -13,6 +13,7 @@ import LoadingScreen from 'src/components/LoadingScreen';
 import BasicLayout from 'src/layouts/BasicLayout';
 import AuthGuard from 'src/components/AuthGuard';
 import GuestGuard from 'src/components/GuestGuard';
+import PrimaryLayout from './layouts/primaryLayout';
 
 const routesConfig = [
   {
@@ -25,6 +26,13 @@ const routesConfig = [
     exact: true,
     path: '/404',
     component: lazy(() => import('src/views/pages/Error404View'))
+  },
+  {
+    exact: true,
+    path: '/app/profiles',
+    guard: AuthGuard,
+    layout: PrimaryLayout,
+    component: lazy(() => import('src/views/profiles'))
   },
   {
     path: '/app',
@@ -42,6 +50,7 @@ const routesConfig = [
       }
     ]
   },
+  
   {
     path: '*',
     routes: [

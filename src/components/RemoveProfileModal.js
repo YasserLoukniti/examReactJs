@@ -4,18 +4,23 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   DialogActions,
-  Button
+  Button,
+  DialogContentText
 } from '@material-ui/core';
+import profilesService from 'src/services/profilesService';
 
-function UserModal({
+function RemoveProfileModal({
   open,
   handleClose,
   userProfile,
   className,
   ...rest
 }) {
+  const handleSubmit = async () => {
+    await profilesService.deleteProfile(userProfile.id)
+    window.location.reload(false);
+  };
   return (
     <Dialog
       open={open}
@@ -24,29 +29,30 @@ function UserModal({
       aria-describedby="alert-dialog-description"
       {...rest}
     >
-      <DialogTitle id="alert-dialog-title">id : {userProfile.id}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">Are you sure about removing this profile ?</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           {userProfile.firstname} {userProfile.lastname}
-          <br />
-          {userProfile.email}
-
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Close
+      <Button onClick={handleClose} color="primary">
+          No
         </Button>
+        <Button onClick={handleSubmit} color="primary">
+          Yes
+        </Button>
+
       </DialogActions>
     </Dialog>
   );
 }
 
-UserModal.propTypes = {
+RemoveProfileModal.propTypes = {
   className: PropTypes.string,
   open: PropTypes.bool,
   handleClose: PropTypes.func,
   userProfile: PropTypes.object,
 };
 
-export default UserModal;
+export default RemoveProfileModal;
