@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import UserModal from 'src/components/UserModal';
 import UserUpdateModal from 'src/components/UserUpdateModal';
+import RemoveProfileModal from 'src/components/RemoveProfileModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {}
@@ -30,6 +31,7 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
 
   const [open, setOpen] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
+  const [openRemove, setOpenRemove] = useState(false);
   const [userProfile, setUserProfile] = useState({
     id: '',
     firstanme: '',
@@ -66,10 +68,20 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
     });
     setOpenUpdate(true);
   };
+  const handleDeleteProfile = (profile) => {
+    setUserProfile({
+      id: profile.id,
+      firstname: profile.firstName,
+      lastname: profile.lastName,
+      email: profile.email,
+    });
+    setOpenRemove(true);
+  };
 
   const handleClose = () => {
     setOpen(false);
     setOpenUpdate(false);
+    setOpenRemove(false);
   };
 
   const profilesToDisplay = applyPagination(profiles, page, rowPerPage);
@@ -133,7 +145,7 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
                         size="large"
                         variant="contained"
                         style={{margin:2}}
-                        onClick={() => handleUserProfile(profile)}
+                        onClick={() => handleDeleteProfile(profile)}
                       >
                         Delete
                       </Button>
@@ -164,6 +176,11 @@ function ProfilesTable({ className, profiles, testButtonClicked, ...rest }) {
       />
       <UserUpdateModal
         open={openUpdate}
+        handleClose={handleClose}
+        userProfile={userProfile}
+      />
+      <RemoveProfileModal
+        open={openRemove}
         handleClose={handleClose}
         userProfile={userProfile}
       />
