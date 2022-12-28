@@ -29,6 +29,11 @@ const routesConfig = [
   },
   {
     exact: true,
+    path: '/',
+    component: () => <Redirect to="src/views/profiles" />
+  },
+  {
+    exact: true,
     path: '/app/profiles',
     guard: AuthGuard,
     layout: PrimaryLayout,
@@ -41,13 +46,9 @@ const routesConfig = [
     routes: [
       {
         exact: true,
-        path: '/app/users',
-        component: lazy(() => import('src/views/users'))
-      },{
-        exact: true,
         path: '/app/series',
         component: lazy(() => import('src/views/series'))
-      }
+      },
     ]
   },
   

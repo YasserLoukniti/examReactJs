@@ -18,7 +18,7 @@ import useAxios from 'src/hooks/useAxios';
 import UserContext from 'src/context/UserContext';
 import Header from './Header';
 import ProfilesTable from './ProfilesTable';
-import CreateProfileModal from 'src/components/CreateProfileModal';
+import CreateProfileModal from 'src/components/modals/CreateProfileModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
