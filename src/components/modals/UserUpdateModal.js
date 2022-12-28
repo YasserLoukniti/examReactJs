@@ -22,12 +22,13 @@ function UserUpdateModal({
   ...rest
 }){
 const updateForm = useRef(null);
-const [msg, setMsg] = useState('');
 
 const handleSubmit = async () => {
   let res = await profilesService.updateProfile({id:userProfile.id,firstName : updateForm.current[0].value , lastName:updateForm.current[1].value ,email:updateForm.current[2].value })
   console.log(userProfile.id,res);
-  setMsg(res.data)
+  if(res.data){ alert(res.data)
+  window.location.reload(false);}
+  else alert("The updatehas been failed :(")
 };
   return (
     <Dialog
@@ -42,7 +43,7 @@ const handleSubmit = async () => {
         <form ref={updateForm}>
           <FormControl>
             <InputLabel htmlFor="firstname">{userProfile.firstname}</InputLabel>
-            <Input id="firstname" aria-describedby="my-helper-text" ref={updateForm.firstname}/>
+            <Input id="firstname" aria-describedby="my-helper-text"/>
             <FormHelperText id="my-helper-text">Firstname</FormHelperText>
 
           </FormControl>
@@ -60,7 +61,6 @@ const handleSubmit = async () => {
         </form>
       </DialogContent> 
       <DialogActions>
-        <p>{msg}</p>
         <Button onClick={handleSubmit} color="primary">
           Update
         </Button>

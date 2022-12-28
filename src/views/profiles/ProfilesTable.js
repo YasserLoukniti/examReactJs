@@ -13,9 +13,9 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import UserModal from 'src/components/UserModal';
-import UserUpdateModal from 'src/components/UserUpdateModal';
-import RemoveProfileModal from 'src/components/RemoveProfileModal';
+import UserModal from 'src/components/modals/UserModal';
+import UserUpdateModal from 'src/components/modals/UserUpdateModal';
+import RemoveProfileModal from 'src/components/modals/RemoveProfileModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {}

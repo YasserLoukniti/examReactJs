@@ -1,4 +1,12 @@
-This project was created with [Create React App](https://github.com/facebook/create-react-app).
+### Description
+
+On a pu consommer 2 API pour faire reussir ce projet , premierement la gestion des profiles (CRUD) dans /app/profiles
+et deuxiemement la consomation d'API TvMaze pour lister des series .
+Comme On a pu changer le design et le construire de notre maniere 
+
+Tous ça en prennat en consideration vos conseils pendant le cours et via l'enoncé d'examen .
+
+PS : On a recupere que la page 30 dans les profiles car c'est là qu'on commence a voir nos propres enregistements
 
 ### To install this project dependencies:
 ### `npm install`
